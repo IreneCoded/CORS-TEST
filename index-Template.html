@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do list</title>
+    <meta name="description" content="This is the to do list, that you need">
+    
+    <link rel="apple-touch-icon" sizes="152x152" href="fav/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="fav/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="fav/favicon-16x16.png">
+<link rel="manifest" href="fav/site.webmanifest">
+<link rel="mask-icon" href="fav/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+    <link href="style/style.css" rel ="stylesheet">
+    <script src="https://kit.fontawesome.com/0ba425caa3.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h1>To Do List</h1>
+    
+    <section>
+    <details>
+        <summary class="forFlexing">Normal Task
+            <div class="btn check" title="Done">
+                <h3><i class="fas fa-check"></i></h3> </div>
+            <div class="editScreen  hide away">
+                <div class="btn edit" title="Edit this Task">
+                    <h3><i class="fas fa-edit"></i></h3>
+                    </div>
+                <div class="btn delete" title="Delete this Task">
+                    <h3>×</h3>
+                </div>
+                <div class="btn important" title="Edit this Task">
+                    <h3>!</h3>
+                </div>
+            </div>
+        </summary>
+    </details>
+    <details class ="listDetails">
+        <summary class="forFlexing">Task with Details
+            <div class="btn check" title="Done">
+                <h3><i class="fas fa-check"></i></h3> </div>
+                <div class="editScreen  hide away">
+                    <div class="btn edit" title="Edit this Task">
+                    <h3><i class="fas fa-edit"></i></h3>
+                </div>
+                    <div class="btn delete" title="delete this Task">
+                    <h3>×</h3>
+                    </div>
+                <div class="btn important" title="Edit this Task">
+                    <h3>!</h3>
+                 </div>
+                </div></summary>
+        <div>
+            <p>Description or Notes to the Task</p>
+            
+            <p>The Date the Task is due</p>
+        </div>
+    </details>
+    <details class="listImportant">
+        <summary class="forFlexing">Important Task
+            <div class="btn check" title="Done">
+                <h3><i class="fas fa-check"></i></h3> </div>
+                <div class="editScreen  hide away">
+                    <div class="btn edit" title="Edit this Task">
+                    <h3><i class="fas fa-edit"></i></h3>
+                </div>
+                    <div class="btn delete" title = "Delete this Task">
+                    <h3>×</h3>
+                    </div>
+                <div class="btn important" title="Edit this Task">
+                    <h3>!</h3>
+                 </div>
+                </div>
+        </summary>
+    </details>
+    
+    <details class="done">
+        <summary class="forFlexing">Archived/Done
+            <div class="btn restore" title="Restore Task">
+                <h3>+</h3>
+                </div>
+            <div class="editScreen  hide away">
+                    <div class="btn edit" title="Edit this Task">
+                    <h3><i class="fas fa-edit"></i></h3>
+                </div>
+                    <div class="btn delete" titel="Delete this Task">
+                    <h3>×</h3>
+                    </div>
+                <div class="btn important" title="Set Important">
+                    <h3>!</h3>
+                 </div>
+                </div>
+            </summary>
+    </details>
+    </section>
+
+    <!-- New Task Button -->
+    <div id="newTask">
+        <input type="text"  id="fastNewTask" placeholder="Enter new Task here">
+        <div class="btn" title="Add new Task" onclick="formScreen()">
+            <h3>+</h3>
+            </div>
+    </div>
+        
+    <!-- edit Button -->
+    <div id="editMode" class="btn" title="Edit the Task" onclick="goEditScreen()">
+        <h3> <i class="fas fa-edit"></i></h3><h3 class="hide away">×</h3> </div>
+
+    <!-- New Task screen -->
+
+     <section class="addNewTask">
+            <h1>Add new Task</h1>
+            
+            <section>
+                <input type="text" id="Task" placeholder="If a title is given in the first step, it will appear here" >
+                <textarea placeholder="Add some Details to your task."  id="details" name="taskDetails" rows="10" ></textarea>
+                
+                 <input type="date" id="dueTask" title="if you wish you can specify a due date here">
+            </section>
+            
+            <div id="sendTask" title="Back without saving" onclick="formScreen()">
+                <div class="btn">
+                    <h3>×</h3>
+                    </div>
+               
+                <div class="forFlexing">
+                <div class="btn importantTask" title="Mark task as Important">
+                        <h3>!</h3>
+                        </div>
+                <div class="btn">
+                    <h3>+</h3>
+                    </div>
+        
+                </div>
+            </div>
+        
+            
+        
+            
+        
+        
+            
+        </section>
+
+        <script>
+            const showhide = item => {
+                item.classList.toggle("hide");
+                setTimeout(function() {
+                    item.classList.toggle("away");
+                }, 700);
+            }
+            
+            
+
+
+            function goEditScreen(){
+                document.querySelectorAll(".check").forEach(showhide);
+                document.querySelectorAll(".restore").forEach(showhide);                
+                document.querySelectorAll(".editScreen").forEach(showhide);                                
+                document.querySelectorAll("#editMode h3").forEach(showhide); 
+            }   
+            
+            function formScreen(){
+                let screen = document.querySelector(".addNewTask");
+                let taskTitel = document.getElementById("fastNewTask");
+                console.log(taskTitel);
+                let taskTitelInput = document.getElementById("Task");
+
+             
+                screen.classList.toggle("newPosition");
+        
+                  taskTitelInput.value = taskTitel.value;
+                  taskTitel.value = "";
+
+                
+                
+            }
+            
+
+
+
+            let tDList = [
+            {
+                    Tname : "drink wine",
+                    TDetails : "",
+                    TDate : "",
+                    TImp : "",
+                    TDone : 0,
+
+                },
+
+                {
+                    Tname : "Book Holidays",
+                    TDetails : "To Moroco perhaps?",
+                    TDate : "",
+                    TImp : "",
+                    TDone : 0,
+
+                },
+                {
+                    Tname : "Spend Money",
+                    TDetails : "",
+                    TDate : "",
+                    TImp : 1,
+                    TDone : 0,
+
+                },
+                {
+                    Tname : "Work",
+                    TDetails : "",
+                    TDate : "",
+                    TImp : 0,
+                    TDone : 1,
+
+                }
+            ]
+            
+            
+        </script>
+
+</body>
+</html>
